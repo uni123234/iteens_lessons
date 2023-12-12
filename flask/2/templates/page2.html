@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% from 'macros.html' import print_styled_text %}
+
+{{ print_styled_text('Some styled text goes here.', 'color: red;') }}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Красива сторінка</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40;
+            padding: 1rem;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 1rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('index') }}">Головна</a>
+        <a href="{{ url_for('page1') }}">Сторінка 1</a>
+        <a href="{{ url_for('page2') }}">Сторінка 2</a>
+    </div>
+    <div class="container">
+        <h1>Вітаємо на красивій сторінці!</h1>
+        <p>Тут можна додати додаткові контенти, зображення та інше.</p>
+    </div>
+</body>
+</html>
