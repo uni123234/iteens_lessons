@@ -4,7 +4,7 @@ from flask import Flask, g, render_template, request
 
 app = Flask(__name__)
 
-
+# _-_
 DATABASE = 'test_db.db'
 CITIES = {
     1: "Kyiv",
