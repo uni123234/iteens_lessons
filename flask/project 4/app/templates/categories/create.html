@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<li><a href="{{ url_for('/.get_index') }}">Головна Сторінка</a></li>
+<li><a href="{{ url_for('categories.get_categories') }}">Переглянути категорії</a></li>
+<li><a href="{{ url_for('spendings.get_spendings') }}">Переглянути витрати</a></li>
+<li><a href="{{ url_for('spendings.create_spending') }}">Додати нову витрату</a></li>
+<li><a href="{{ url_for('report.generate_report') }}">Переглянути звіт про витрати</a></li>
+<h1>Create new category</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='categories/add_categories.css') }}">
+<form method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" required> <br/>
+    <label for="name">Description</label>
+    <input type="text" name="description" id="description" required> <br/>
+    <label for="name">Color</label>
+    <input type="color" name="color" id="color" value="#FFFFFF" required> <br/>
+
+    <button type="reset">Reset</button>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

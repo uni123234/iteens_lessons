@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Список витрат</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='spendings/spendings_view.css') }}">
+</head>
+<body>
+<li><a href="{{ url_for('/.get_index') }}">Головна Сторінка</a></li>
+<li><a href="{{ url_for('categories.get_categories') }}">Переглянути категорії</a></li>
+<li><a href="{{ url_for('categories.create_category') }}">Додати категорію</a></li>
+<li><a href="{{ url_for('spendings.create_spending') }}">Додати нову витрату</a></li>
+<li><a href="{{ url_for('report.generate_report') }}">Переглянути звіт про витрати</a></li>
+<h1>Список витрат</h1>
+<table border="1">
+    <tr>
+        <th>Назва</th>
+        <th>Сума</th>
+        <th>Категорія</th>
+        <th>Дата</th>
+        <th>Зарплата/Витрата</th>
+        <th>Дії</th>
+    </tr>
+    {% for spending in spendings %}
+        <tr>
+            <td>{{ spending['name'] }}</td>
+            <td>{{ spending['amount'] }}</td>
+            <td>{{ spending['category'] }}</td>
+            <td>{{ spending['date'] }}</td>
+            <td>{{ 'Зарплата' if not spending['is_spending'] else 'Витрата' }}</td>
+            <td>
+                <a href="{{ url_for('spendings.edit_spending', spending_id=spending['id']) }}">Редагувати</a>
+                |
+                <a href="{{ url_for('spendings.delete_spending', spending_id=spending['id']) }}">Видалити</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

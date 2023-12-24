@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <li><a href="{{ url_for('/.get_index') }}">Головна Сторінка</a></li>
+    <li><a href="{{ url_for('categories.get_categories') }}">Переглянути категорії</a></li>
+    <li><a href="{{ url_for('categories.create_category') }}">Додати категорію</a></li>
+    <li><a href="{{ url_for('spendings.get_spendings') }}">Переглянути витрати</a></li>
+    <li><a href="{{ url_for('report.generate_report') }}">Переглянути звіт про витрати</a></li>
+    <title>Створити нові витрати</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='spendings/spendings_register.css') }}">
+</head>
+<body>
+<h1>Створити нові витрати</h1>
+<form method="post" action="{{ url_for('spendings.create_spending') }}">
+    <label for="name">Ім'я витрати:</label>
+    <input type="text" name="name" required><br>
+
+    <label for="amount">Ціна:</label>
+    <input type="number" name="amount" required><br>
+
+    <label for="category">Категорія:</label>
+    <select name="category" required>
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select><br>
+
+    <label for="date">Дата:</label>
+    <input type="date" name="date"><br>
+
+    <label for="is_spending">Витрата:</label>
+    <input type="checkbox" name="is_spending"><br>
+
+    <button type="submit">Створити витрату</button>
+</form>
+</body>
+</html>
