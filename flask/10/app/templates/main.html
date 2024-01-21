@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% for date, events in data.items() %}
+        <h3>{{ date }}</h3>
+        <div class="single_day">
+            <div class="weather">
+                Weather: {{ weather_data[date]["weather"][0]["description"] }}
+            </div>
+            {% for event in events %}
+                <div class="event">
+                    {{ event }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% endblock main %}
