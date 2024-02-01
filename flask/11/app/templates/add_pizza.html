@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Add New Pizza</h1>
+    {% include 'flash_messages_component.html' %}
+    <form method="post">
+        <div class="form-group">
+            <label for="name">Pizza Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price" required>
+
+            <button type="submit" class="btn btn-primary mt-3">Add Pizza</button>
+        </div>
+    </form>
+{% endblock main %}
