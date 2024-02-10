@@ -3,3 +3,4 @@ venv
 .db
 .jaml
 sp-test
+__pycache__
