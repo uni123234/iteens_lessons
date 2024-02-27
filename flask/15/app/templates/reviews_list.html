@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Reviews</h1>
+    <div class="list-group">
+        {% for review in reviews %}
+            <div class="list-group-item">
+                <h5 class="mb-1">{{ review.name }}</h5>
+                <p class="mb-1">Rating: {{ review.rating }}</p>
+                <p>{{ review.comment }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock main %}

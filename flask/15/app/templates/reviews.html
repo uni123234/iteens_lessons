@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1>Leave a Review</h1>
+    {% include 'flash_messages_component.html' %}
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.name.label }} {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.rating.label }} {{ form.rating(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.comment.label }} {{ form.comment(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock main %}
