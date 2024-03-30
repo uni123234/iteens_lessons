@@ -7,20 +7,24 @@ from app.models import Student, Group
 
 bp = Blueprint("student", __name__)
 
+
 def get_age(birthdate):
     birthdate = datetime.strptime(birthdate, "%Y-%m-%d")
     current_date = datetime.now()
     age = current_date.year - birthdate.year - (
-            (current_date.month, current_date.day) < (birthdate.month, birthdate.day)
+        (current_date.month, current_date.day) < (
+            birthdate.month, birthdate.day)
     )
     return age
+
 
 @bp.route('/', methods=["GET", "POST"])
 def student_add():
     with Session() as session:
         if request.method == "POST":
             print(request.form.get("groups"))
-            items_groups = session.query(Group).where(Group.id.in_([request.form.get("groups"), ])).all()
+            items_groups = session.query(Group).where(
+                Group.id.in_([request.form.get("groups"), ])).all()
             new_student = Student(
                 name=request.form.get("name"),
                 surname=request.form.get("surname"),
@@ -34,6 +38,7 @@ def student_add():
         students = session.query(Student).all()
         groups = session.query(Group).all()
     return render_template("student/managment.html", students=students, groups=groups)
+
 
 @bp.route('/<int:id>', methods=["GET"])
 def student_get(id):

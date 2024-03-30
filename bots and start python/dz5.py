@@ -42,10 +42,10 @@ students = [
     ['Юлія', 'Семенченко']
 ]
 
-con: int=0
+con: int = 0
 for students in students:
-    if students[0] =='Андрій':
-       con +=1
+    if students[0] == 'Андрій':
+        con += 1
 
 print("Кількість Андріїв в групі", con)
 

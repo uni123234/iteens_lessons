@@ -1,15 +1,13 @@
-{% extends 'base.html' %}
-
-{% block main %}
-    <h1>Pizzas</h1>
-    {% include 'flash_messages_component.html' %}
-    <div class="list-group">
-        {% for pizza in pizzas %}
-            <a href="#" class="list-group-item list-group-item-action">
-                <h5 class="mb-1">{{ pizza.name }}</h5>
-                <p class="mb-1">{{ pizza.description }}</p>
-                <small>Price: {{ pizza.price }}</small>
-            </a>
-        {% endfor %}
-    </div>
+{% extends 'base.html' %} {% block main %}
+<h1>Pizzas</h1>
+{% include 'flash_messages_component.html' %}
+<div class="list-group">
+	{% for pizza in pizzas %}
+	<a href="#" class="list-group-item list-group-item-action">
+		<h5 class="mb-1">{{ pizza.name }}</h5>
+		<p class="mb-1">{{ pizza.description }}</p>
+		<small>Price: {{ pizza.price }}</small>
+	</a>
+	{% endfor %}
+</div>
 {% endblock main %}

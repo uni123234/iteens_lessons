@@ -1,5 +1,5 @@
 import re
-##1
+# 1
 surname = input("Введіть ваше імя: ")
 count = {}
 
@@ -12,7 +12,7 @@ for letter in surname:
 most_common_letter = max(count, key=count.get)
 
 print(f"Літера '{most_common_letter}' зустрічається найчастіше у вашому імя.")
-##2
+# 2
 
 input_str = input("Введіть рядок: ")
 

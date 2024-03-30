@@ -11,7 +11,8 @@ def generate_report():
         end_date = request.form.get('end_date')
         category_id = request.form.get('category')
 
-        spendings = get_spending_db().get_spendings_in_period(start_date, end_date, category_id)
+        spendings = get_spending_db().get_spendings_in_period(
+            start_date, end_date, category_id)
 
         report_data = {
             'title': 'Звіт про витрати',

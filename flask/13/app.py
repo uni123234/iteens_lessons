@@ -5,9 +5,11 @@ import requests
 app = Flask(__name__)
 swagger = Swagger(app)
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/weather', methods=['GET'])
 def get_weather():
@@ -41,6 +43,7 @@ def get_weather():
         })
     else:
         return jsonify({'error': 'Failed to fetch weather data'}), response.status_code
+
 
 if __name__ == '__main__':
     app.run(debug=True)

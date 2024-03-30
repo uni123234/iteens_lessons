@@ -20,4 +20,3 @@ class Post(Base):
 
     def __str__(self):
         return self.title.capitalize()
-

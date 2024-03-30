@@ -46,7 +46,8 @@ def edit_category(category_id):
         description = request.form.get('description')
         color = request.form.get('color')
 
-        db.edit_category(id=category_id, name=name, description=description, color=color)
+        db.edit_category(id=category_id, name=name,
+                         description=description, color=color)
         return redirect('/categories', code=302)
 
 

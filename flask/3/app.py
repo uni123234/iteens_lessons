@@ -14,6 +14,7 @@ CITIES = {
     5: "Dnipro",
 }
 
+
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
@@ -72,4 +73,4 @@ def participants():
 
 if __name__ == "__main__":
     create_db()
-    app.run(debug = True)
+    app.run(debug=True)

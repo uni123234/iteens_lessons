@@ -12,6 +12,7 @@ student_group_assoc_table = Table(
     Column("student_id", ForeignKey("student.id"), primary_key=True)
 )
 
+
 class Student(Base):
     __tablename__ = "student"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -19,7 +20,8 @@ class Student(Base):
     surname: Mapped[Optional[str]]
     age: Mapped[int]
     address: Mapped[str] = mapped_column(String(255))
-    groups: Mapped[List[Group]] = relationship(secondary=student_group_assoc_table)
+    groups: Mapped[List[Group]] = relationship(
+        secondary=student_group_assoc_table)
 
     def __repr__(self):
         return f"{self.name.title()} {self.surname.title()} Age: {self.age}"

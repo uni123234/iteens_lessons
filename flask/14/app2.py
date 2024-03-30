@@ -5,17 +5,22 @@ import wtforms
 app = flask.Flask(__name__)
 app.config['SECRET_KEY'] = "trade"
 
+
 def is_luggage_weight_valid(form, field):
     if field.data > 30:
         raise wtforms.validators.ValidationError("Weight is very big")
+
+
 class LuggageForm(flask_wtf.FlaskForm):
-    surname = wtforms.StringField("Surname", validators=[wtforms.validators.InputRequired()])
-    name = wtforms.StringField("Name", validators=[wtforms.validators.InputRequired()])
-    pass_id = wtforms.IntegerField("Password #", validators=[wtforms.validators.InputRequired()])
+    surname = wtforms.StringField(
+        "Surname", validators=[wtforms.validators.InputRequired()])
+    name = wtforms.StringField(
+        "Name", validators=[wtforms.validators.InputRequired()])
+    pass_id = wtforms.IntegerField("Password #", validators=[
+                                   wtforms.validators.InputRequired()])
     luggage_weight = wtforms.IntegerField("Weight luggage", validators=[wtforms.validators.InputRequired(),
                                                                         is_luggage_weight_valid])
     submit = wtforms.SubmitField("Register")
-
 
 
 @app.route("/luggage/", methods=["GET", "POST"])

@@ -14,5 +14,6 @@ with Session() as session:
     sale1 = Sale(quantity=20, product=product1, customer=customer1)
     sale2 = Sale(quantity=30, product=product2, customer=customer1)
 
-    session.add_all([product1, product2, customer1, supply1, supply2, sale1, sale2])
+    session.add_all([product1, product2, customer1,
+                    supply1, supply2, sale1, sale2])
     session.commit()

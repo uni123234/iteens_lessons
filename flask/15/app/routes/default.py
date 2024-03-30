@@ -19,6 +19,7 @@ def index():
 
 # https://openweathermap.org/
 
+
 @bp.route("/reviews", methods=["GET", "POST"])
 def reviews():
     form = ReviewForm()
@@ -27,11 +28,11 @@ def reviews():
         rating = form.rating.data
         comment = form.comment.data
 
-
         flash("Thank you for your review!", "success")
         return redirect(url_for("default.reviews"))
 
     return render_template("reviews.html", form=form)
+
 
 @bp.route("/reviews_list")
 def reviews_list():

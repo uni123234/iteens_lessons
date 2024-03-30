@@ -6,6 +6,7 @@ from app.models import Group
 
 bp = Blueprint("group", __name__)
 
+
 @bp.route('/', methods=["GET", "POST"])
 def group_add():
     with Session() as session:
@@ -15,6 +16,7 @@ def group_add():
             session.commit()
         groups = session.query(Group).all()
     return render_template("group/managment.html", groups=groups)
+
 
 @bp.route('/<int:id>', methods=["GET"])
 def group_get(id):

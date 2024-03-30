@@ -8,7 +8,8 @@ class Parent(Base):
     __tablename__ = "parent_table"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    child_id: Mapped[Optional[int]] = mapped_column(ForeignKey("child_table.id"))
+    child_id: Mapped[Optional[int]] = mapped_column(
+        ForeignKey("child_table.id"))
     child: Mapped[Optional["Child"]] = relationship()
 
 

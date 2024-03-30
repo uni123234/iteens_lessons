@@ -2,6 +2,7 @@ from telegram.ext import ContextTypes, CallbackContext
 from telegram import Update
 from func import *
 
+
 async def start(update: Update, context: ContextTypes):
     save_message_to_history(update, context)
     user_tag = f'<b>@{update.message.from_user.username}</b>'

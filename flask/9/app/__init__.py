@@ -1,6 +1,7 @@
 from flask import Flask
 from app.database import create_db
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -10,6 +11,6 @@ def create_app():
     app.register_blueprint(student_bp, url_prefix="/students/")
 
     from app import models
-    create_db() # Create database tables
+    create_db()  # Create database tables
 
     return app

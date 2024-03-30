@@ -61,7 +61,8 @@ class CategoryDb(DefaultInterface):
         return self.cursor.fetchone()
 
     def create_category(self, **kwargs):
-        name_of_columns, insert_times, columns, values = self.get_write_data(**kwargs)
+        name_of_columns, insert_times, columns, values = self.get_write_data(
+            **kwargs)
 
         self.cursor.execute("""
             INSERT INTO category ({}) VALUES ({})
@@ -77,7 +78,8 @@ class CategoryDb(DefaultInterface):
         self.conn.commit()
 
     def edit_category(self, id, **kwargs):
-        name_of_columns, insert_times, columns, values = self.get_write_data(**kwargs)
+        name_of_columns, insert_times, columns, values = self.get_write_data(
+            **kwargs)
         values.append(id)
         update_fields = ', '.join([f"{name}=?" for name in columns])
 
@@ -131,7 +133,8 @@ class SpendingsDb(DefaultInterface):
 
     def edit_spending(self, spending_id, name, category_id, amount, date, is_spending):
         values = [name, category_id, amount, date, is_spending, spending_id]
-        update_fields = ', '.join([f"{name}=?" for name in ['name', 'category_id', 'amount', 'date', 'is_spending']])
+        update_fields = ', '.join([f"{name}=?" for name in [
+                                  'name', 'category_id', 'amount', 'date', 'is_spending']])
 
         self.cursor.execute("""
             UPDATE spending 

@@ -10,33 +10,38 @@ def init_data():
 
         group1y_7.students.extend(
             [
-                Student(name="Андрій", second_name="Яцура", email=f"example{i}@mail.io")
+                Student(name="Андрій", second_name="Яцура",
+                        email=f"example{i}@mail.io")
                 for i in range(10)
             ])
         group1y_2.students.extend(
             [
-                Student(name="Андрій", second_name="Яцура", email=f"example2{i}@mail.io")
+                Student(name="Андрій", second_name="Яцура",
+                        email=f"example2{i}@mail.io")
                 for i in range(5)
             ])
         group1y_5.students.extend(
             [
-                Student(name="Андрій", second_name="Яцура", email=f"example3{i}@mail.io")
+                Student(name="Андрій", second_name="Яцура",
+                        email=f"example3{i}@mail.io")
                 for i in range(5)
             ])
-    
-        session.add_all([group1y_7, group1y_2, group1y_5]) # for multiple models
+
+        # for multiple models
+        session.add_all([group1y_7, group1y_2, group1y_5])
         # session.add(group1y_5)
         session.commit()
 
+
 def update_data():
     with Session() as session:
-        
+
         request = select(Group).where(Group.name.like("%1y_5_23_3%"))
         group = session.scalars(request).one()
         group.name = "New name2"
 
-        
         session.commit()
+
 
 def select_data():
     with Session() as session:
@@ -56,6 +61,7 @@ def main():
     init_data()
     select_data()
     update_data()
+
 
 if __name__ == "__main__":
     main()

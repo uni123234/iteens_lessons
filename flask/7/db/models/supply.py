@@ -2,6 +2,7 @@ from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from . import DeclarativeBase
 
+
 class Supply(DeclarativeBase):
     __tablename__ = "supplies"
 

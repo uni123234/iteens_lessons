@@ -53,7 +53,8 @@ def edit_spending(spending_id):
         is_spending = request.form.get('is_spending')
         date = request.form.get('date')
 
-        get_spending_db().edit_spending(spending_id, name, category_id, amount, date, is_spending)
+        get_spending_db().edit_spending(spending_id, name,
+                                        category_id, amount, date, is_spending)
         flash('Витрата успішно відредагована', 'success')
         return redirect(url_for('spendings.get_spendings'))
 

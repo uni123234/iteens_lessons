@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-#from data_module import get_data
+# from data_module import get_data
+
 
 def get_data():
     x_values = [1, 2, 3, 4, 5]
@@ -10,7 +11,7 @@ def get_data():
 
 x_values, y_values = get_data()
 
-plt.plot(x_values,y_values)
+plt.plot(x_values, y_values)
 plt.title("Графік Х від Y")
 plt.xlabel("X-ось")
 plt.ylabel("Y-ось")

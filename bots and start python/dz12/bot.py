@@ -14,7 +14,8 @@ def main() -> None:
     history_handler = CommandHandler('history', history)
 
     message_handler = MessageHandler(filters.TEXT, save_message_to_history)
-    unsupported_message_handler = MessageHandler(filters.ALL, unsupported_message)
+    unsupported_message_handler = MessageHandler(
+        filters.ALL, unsupported_message)
     unknown_command_handler = MessageHandler(filters.Command, unknown_command)
 
     application.add_error_handler(error_handler)

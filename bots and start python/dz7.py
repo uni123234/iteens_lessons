@@ -1,21 +1,23 @@
-#зрізи
-list=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-my_s=list[2:7]
+# зрізи
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+my_s = list[2:7]
 print(my_s)
 
 
-n1='Це рядок, який потрібно модифікувати'
-n2='модифікований рядок'
-iv=n1.index(',')
-nw=n1[:iv+1] + " " + n2 + "," + n1[iv+1:]
+n1 = 'Це рядок, який потрібно модифікувати'
+n2 = 'модифікований рядок'
+iv = n1.index(',')
+nw = n1[:iv+1] + " " + n2 + "," + n1[iv+1:]
 print(nw)
-#множини
-set1=set(input('строка 1: ').split())
-set2=set(input('строка 2: ').split())
+# множини
+set1 = set(input('строка 1: ').split())
+set2 = set(input('строка 2: ').split())
 print(f'Загальні елементи: {set1 & set2}\nОсобливі елементи:{set1 ^ set2 }\nСпц: { set1 | set2} \nSet 1 різниця: {set2 - set1} \nSet 2 різниця {set2 - set1}')
 
-available_items = {"Манго", "Банани", "Снікерс", "Вода", "Яблука", "Чипси", "Морква"}
+available_items = {"Манго", "Банани", "Снікерс",
+                   "Вода", "Яблука", "Чипси", "Морква"}
 user_cart = set()
+
 
 def add_to_cart(item):
     if item in available_items:
@@ -24,6 +26,7 @@ def add_to_cart(item):
     else:
         print(f"{item} недоступний для покупки.")
 
+
 def remove_from_cart(item):
     if item in user_cart:
         user_cart.remove(item)
@@ -31,14 +34,17 @@ def remove_from_cart(item):
     else:
         print(f"{item} не знайдено у кошику.")
 
+
 def view_cart():
     print("Товари у кошику:")
     for item in user_cart:
         print(item)
 
+
 def end_shopping():
     print("Дякуємо за покупки!")
     exit()
+
 
 while True:
     print("\nЩо ви хочете зробити?")
@@ -60,7 +66,7 @@ while True:
         end_shopping()
     else:
         print("Невірний вибір. Спробуйте ще раз")
-#Словник
+# Словник
 # Ввести текст від користувача
 text = input("Введіть текст: ")
 
@@ -92,7 +98,8 @@ print(my_dict)  # {'a': 1, 'c': 3}
 my_dict = {'a': 1, 'b': 2, 'c': 3}
 value = my_dict.get('b')  # повертаємо значення ключа 'b'
 print(value)  # 2
-value = my_dict.get('d', 'Значення не знайдено')  # повертаємо значення ключа 'd' (який не існує)
+# повертаємо значення ключа 'd' (який не існує)
+value = my_dict.get('d', 'Значення не знайдено')
 print(value)  # Значення не знайдено
 # Приклад використання методу .clear ()
 my_dict = {'a': 1, 'b': 2, 'c': 3}
@@ -107,5 +114,3 @@ print(my_dict)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
 my_dict = {'a': 1, 'b': 2, 'c': 3}
 new_dict = my_dict.copy()  # створюємо копію my_dict
 print(new_dict)  # {'a': 1, 'b': 2, 'c': 3}
-
-

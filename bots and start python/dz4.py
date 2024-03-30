@@ -1,6 +1,6 @@
-sum=0
+sum = 0
 
-for i in range(1,101,2):
+for i in range(1, 101, 2):
     sum += i
 
 print('Сума всіх чисел неправильних чисел від 1 до 100', sum)
