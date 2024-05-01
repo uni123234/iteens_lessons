@@ -36,7 +36,7 @@ app = flask.Flask(__name__)
 app.config['SECRET_KEY'] = 'ad'
 
 
-@app.route('/subscribe', methods=['GET', 'POST'])
+@app.route('/subscribe/', methods=['GET', 'POST'])
 def subscribe():
     form = SubcriptionForm()
     if flask.request.method == 'GET':
@@ -58,7 +58,7 @@ def ice():
     return form.tastes.data
 
 
-@app.route('/cars', methods=['GET', 'POST'])
+@app.route('/cars/', methods=['GET', 'POST'])
 def cars():
     form = CarsForm()
     form.model.choices = [('Audi', 'Audi'), ('BMW', 'BMW'), ('Tesla', 'Tesla')]
@@ -69,7 +69,7 @@ def cars():
     return form.model.data
 
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register/', methods=['GET', 'POST'])
 def registration():
     form = RegistrationForm()
 
