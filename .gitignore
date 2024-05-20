@@ -2,6 +2,6 @@ venv
 .idea
 .db
 .jaml
-sp-test
 __pycache__
 .sql
+sp_test/
