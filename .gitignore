@@ -5,3 +5,4 @@ venv
 __pycache__
 .sql
 sp_test/
+django/1 start django/frist_project/db.sqlite3
