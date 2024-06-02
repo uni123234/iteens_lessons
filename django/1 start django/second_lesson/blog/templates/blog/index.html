@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    <h1>Welcome</h1>
-    {% for i in menu %}
-    <a href="{% url 'about' %}">{{ i }}</a>
-    {% endfor %}
-{% endblock %}

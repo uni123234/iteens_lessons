@@ -6,3 +6,5 @@ __pycache__
 .sql
 sp_test/
 django/1 start django/frist_project/db.sqlite3
+hot_keys.txt
+.~lock.hot_keys.txt#
