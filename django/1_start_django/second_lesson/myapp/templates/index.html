@@ -1,14 +1,78 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student List</title>
-</head>
-<body>
-    <h1>Students</h1>
-    <ul>
-        {% for student in students %}
-        <li>{{ student.first_name }} {{ student.last_name }} - {{ student.school.name }} - Class {{ student.class_number.class_number }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "base_st.html" %}
+
+{% block title %}
+Student List
+{% endblock %}
+
+{% block content %}
+<h1 class="my-4 text-center">Students</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>School</th>
+                <th>Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{ loop.index }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ student.first_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink{{ loop.index }}">
+                            <a class="dropdown-item" href="#">{{ student.first_name }}</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{ loop.index }}1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ student.last_name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink{{ loop.index }}1">
+                            <a class="dropdown-item" href="#">{{ student.last_name }}</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{ loop.index }}2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ student.address }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink{{ loop.index }}2">
+                            <a class="dropdown-item" href="#">{{ student.address }}</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{ loop.index }}3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ student.school.name }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink{{ loop.index }}3">
+                            <a class="dropdown-item" href="#">{{ student.school.name }}</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink{{ loop.index }}4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ student.class_number.class_number }}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink{{ loop.index }}4">
+                            <a class="dropdown-item" href="#">{{ student.class_number.class_number }}</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
