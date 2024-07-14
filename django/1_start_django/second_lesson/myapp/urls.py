@@ -14,4 +14,6 @@ urlpatterns = [
     path('teachers/', views.teacher_list, name='teacher_list'),
     path('teachers/create/', views.create_teacher, name='create_teacher'),
     path('teachers/edit/<int:teacher_id>/', views.edit_teacher, name='edit_teacher'),
+    path('search_teacher_name/', views.search_teacher_name, name='search_teacher_name'),  # Teacher search
+    path('search_student_name/', views.search_student_name, name='search_student_name'),  # Student search
 ]

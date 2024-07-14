@@ -53,5 +53,54 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    function searchTeacherName() {
+        var input = document.getElementById('name').value;
+        if (input.length > 0) {
+            fetch(`/search_teacher_name?query=${input}`)
+                .then(response => response.json())
+                .then(data => {
+                    var suggestions = document.getElementById('suggestions');
+                    suggestions.innerHTML = '';
+                    data.forEach(name => {
+                        var suggestionItem = document.createElement('a');
+                        suggestionItem.classList.add('list-group-item', 'list-group-item-action');
+                        suggestionItem.innerText = name;
+                        suggestionItem.onclick = () => {
+                            document.getElementById('name').value = name;
+                            suggestions.innerHTML = '';
+                        };
+                        suggestions.appendChild(suggestionItem);
+                    });
+                });
+        } else {
+            document.getElementById('suggestions').innerHTML = '';
+        }
+    }
+
+    function searchStudentName() {
+        var input = document.getElementById('name').value;
+        if (input.length > 0) {
+            fetch(`/search_student_name?query=${input}`)
+                .then(response => response.json())
+                .then(data => {
+                    var suggestions = document.getElementById('student_suggestions');
+                    suggestions.innerHTML = '';
+                    data.forEach(name => {
+                        var suggestionItem = document.createElement('a');
+                        suggestionItem.classList.add('list-group-item', 'list-group-item-action');
+                        suggestionItem.innerText = name;
+                        suggestionItem.onclick = () => {
+                            document.getElementById('name').value = name;
+                            suggestions.innerHTML = '';
+                        };
+                        suggestions.appendChild(suggestionItem);
+                    });
+                });
+        } else {
+            document.getElementById('student_suggestions').innerHTML = '';
+        }
+    }
+    </script>
 </body>
 </html>

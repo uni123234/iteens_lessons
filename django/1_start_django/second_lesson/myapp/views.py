@@ -1,9 +1,11 @@
 from django.contrib.auth import login, authenticate
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import School, Class, Student, CustomUser, Teacher
 from .forms import StudentForm, UserLoginForm, CustomUserCreationForm, TeacherForm
+
 
 def register(request):
     if request.method == 'POST':
@@ -17,6 +19,7 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'register.html', {'form': form})
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -90,3 +93,23 @@ def edit_teacher(request, teacher_id):
     else:
         form = TeacherForm(instance=teacher)
     return render(request, "edit_teacher.html", {"form": form})
+
+
+def search_teacher_name(request):
+    query = request.GET.get('query', '')
+    if query:
+        teachers = Teacher.objects.filter(first_name__icontains=query) | Teacher.objects.filter(last_name__icontains=query)
+        names = [f"{teacher.first_name} {teacher.last_name}" for teacher in teachers]
+    else:
+        names = []
+    return JsonResponse(names, safe=False)
+
+
+def search_student_name(request):
+    query = request.GET.get('query', '')
+    if query:
+        students = Student.objects.filter(first_name__icontains=query) | Student.objects.filter(last_name__icontains=query)
+        names = [f"{student.first_name} {student.last_name}" for student in students]
+    else:
+        names = []
+    return JsonResponse(names, safe=False)
