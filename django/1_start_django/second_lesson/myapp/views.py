@@ -22,6 +22,7 @@ def register(request):
         form = CustomUserCreationForm()
     return render(request, "register.html", {"form": form})
 
+
 def user_login(request):
     if request.method == "POST":
         form = UserLoginForm(data=request.POST)
@@ -39,6 +40,7 @@ def user_login(request):
         form = UserLoginForm()
     return render(request, "login.html", {"form": form})
 
+
 @login_required
 def create_students(request):
     if request.method == "POST":
@@ -49,6 +51,7 @@ def create_students(request):
     else:
         form = StudentForm()
     return render(request, "create_students.html", {"form": form})
+
 
 @login_required
 def edit_students(request, student_id):
@@ -69,11 +72,13 @@ class StudentListView(View):
         students = Student.objects.all()
         return render(request, "index.html", {"students": students})
 
+
 @method_decorator(login_required, name='dispatch')
 class TeacherListView(View):
     def get(self, request):
         teachers = Teacher.objects.all()
         return render(request, "teacher_list.html", {"teachers": teachers})
+
 
 @method_decorator(login_required, name='dispatch')
 class CreateTeacherView(View):
@@ -87,6 +92,7 @@ class CreateTeacherView(View):
             form.save()
             return redirect("myapp:teacher_list")
         return render(request, "create_teacher.html", {"form": form})
+
 
 @method_decorator(login_required, name='dispatch')
 class EditTeacherView(View):
