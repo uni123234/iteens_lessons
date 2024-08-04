@@ -40,12 +40,6 @@ def user_login(request):
 
 
 @login_required
-def student_list(request):
-    students = Student.objects.all()
-    return render(request, "index.html", {"students": students})
-
-
-@login_required
 def teacher_list(request):
     teachers = Teacher.objects.all()
     return render(request, "teacher_list.html", {"teachers": teachers})
@@ -99,3 +93,10 @@ def edit_teacher(request, teacher_id):
     else:
         form = TeacherForm(instance=teacher)
     return render(request, "edit_teacher.html", {"form": form})
+
+
+@login_required
+def student_list(request):
+    students = Student.objects.all()
+    page_num = request.GET.get('page', 1)
+    return render(request, "index.html", {"students": students, "page_num": page_num})
