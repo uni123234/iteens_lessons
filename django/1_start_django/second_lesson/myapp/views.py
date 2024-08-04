@@ -41,6 +41,7 @@ def user_login(request):
     return render(request, "login.html", {"form": form})
 
 
+@login_required
 def teacher_list(request):
     teachers = Teacher.objects.all()
     return render(request, "teacher_list.html", {"teachers": teachers})
