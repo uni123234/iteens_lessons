@@ -3,8 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views import View
-from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator
 from .models import School, Class, Student, CustomUser, Teacher
 from .forms import StudentForm, UserLoginForm, CustomUserCreationForm, TeacherForm
 
@@ -42,11 +41,24 @@ def user_login(request):
 
 
 @login_required
+def student_list(request):
+    students = Student.objects.all()
+    paginator = Paginator(students, 10)
+    page_num = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_num)
+    return render(request, "index.html", {"page_obj": page_obj})
+
+
+@login_required
 def teacher_list(request):
     teachers = Teacher.objects.all()
-    return render(request, "teacher_list.html", {"teachers": teachers})
+    paginator = Paginator(teachers, 10)
+    page_num = request.GET.get('page', 1)
+    page_obj = paginator.get_page(page_num)
+    return render(request, "teacher_list.html", {"page_obj": page_obj})
 
 
+@login_required
 def create_students(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
@@ -71,58 +83,36 @@ def edit_students(request, student_id):
     return render(request, "edit_students.html", {"form": form})
 
 
-@method_decorator(login_required, name='dispatch')
-class StudentListView(View):
-    def get(self, request):
-        students = Student.objects.all()
-        return render(request, "index.html", {"students": students})
-
-
-@method_decorator(login_required, name='dispatch')
-class TeacherListView(View):
-    def get(self, request):
-        teachers = Teacher.objects.all()
-        return render(request, "teacher_list.html", {"teachers": teachers})
-
-
-@method_decorator(login_required, name='dispatch')
-class CreateTeacherView(View):
-    def get(self, request):
-        form = TeacherForm()
-        return render(request, "create_teacher.html", {"form": form})
-    
-    def post(self, request):
+@login_required
+def create_teacher(request):
+    if request.method == "POST":
         form = TeacherForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect("myapp:teacher_list")
-        return render(request, "create_teacher.html", {"form": form})
+    else:
+        form = TeacherForm()
+    return render(request, "create_teacher.html", {"form": form})
 
 
-@method_decorator(login_required, name='dispatch')
-class EditTeacherView(View):
-    def get(self, request, teacher_id):
-        teacher = get_object_or_404(Teacher, pk=teacher_id)
-        form = TeacherForm(instance=teacher)
-        return render(request, "edit_teacher.html", {"form": form})
-    
-    def post(self, request, teacher_id):
-        teacher = get_object_or_404(Teacher, pk=teacher_id)
+@login_required
+def edit_teacher(request, teacher_id):
+    teacher = get_object_or_404(Teacher, pk=teacher_id)
+    if request.method == "POST":
         form = TeacherForm(request.POST, instance=teacher)
         if form.is_valid():
             form.save()
             return redirect("myapp:teacher_list")
-<<<<<<< HEAD
     else:
         form = TeacherForm(instance=teacher)
     return render(request, "edit_teacher.html", {"form": form})
 
 
-@login_required
-def student_list(request):
-    students = Student.objects.all()
-    page_num = request.GET.get('page', 1)
-    return render(request, "index.html", {"students": students, "page_num": page_num})
-=======
-        return render(request, "edit_teacher.html", {"form": form})
->>>>>>> 81b26209602f9ee293f1f5d4532c631d3c337d4d
+def search_name(request):
+    query = request.GET.get('query', '')
+    if query:
+        students = Student.objects.filter(name__icontains=query).values_list('name', flat=True)
+        teachers = Teacher.objects.filter(name__icontains=query).values_list('name', flat=True)
+        results = list(students) + list(teachers)
+        return JsonResponse(results, safe=False)
+    return JsonResponse([], safe=False)
